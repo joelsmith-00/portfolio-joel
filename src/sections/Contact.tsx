@@ -1,17 +1,29 @@
 
+import { useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Mail, Linkedin, Github, Send } from 'lucide-react';
+import { Mail, Linkedin, Github } from 'lucide-react';
 
 const Contact = () => {
+    useEffect(() => {
+        const script = document.createElement('script');
+        script.src = "https://static-bundles.visme.co/forms/vismeforms-embed.js";
+        script.async = true;
+        document.body.appendChild(script);
+
+        return () => {
+            document.body.removeChild(script);
+        };
+    }, []);
+
     return (
         <section id="contact" className="py-20 bg-[var(--color-bg)] text-[var(--color-text-main)] px-6 transition-colors duration-300">
-            <div className="container mx-auto max-w-4xl">
+            <div className="container mx-auto max-w-5xl">
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8 }}
                     viewport={{ once: true }}
-                    className="text-center mb-16"
+                    className="text-center mb-12"
                 >
                     <h2 className="text-4xl font-bold mb-4">Get In Touch</h2>
                     <p className="text-[var(--color-text-muted)] max-w-xl mx-auto">
@@ -19,10 +31,16 @@ const Contact = () => {
                     </p>
                 </motion.div>
 
-                <div className="grid md:grid-cols-2 gap-12">
+                <div className="flex flex-col gap-12">
                     {/* Contact Info */}
-                    <div className="space-y-8">
-                        <div className="flex items-center gap-4">
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8, delay: 0.2 }}
+                        viewport={{ once: true }}
+                        className="flex flex-wrap justify-center gap-8"
+                    >
+                        <div className="flex items-center gap-4 min-w-[250px]">
                             <div className="p-4 rounded-full bg-[var(--color-card-bg)] border border-[var(--color-card-border)] text-primary">
                                 <Mail className="w-6 h-6" />
                             </div>
@@ -34,7 +52,7 @@ const Contact = () => {
                             </div>
                         </div>
 
-                        <div className="flex items-center gap-4">
+                        <div className="flex items-center gap-4 min-w-[250px]">
                             <div className="p-4 rounded-full bg-[var(--color-card-bg)] border border-[var(--color-card-border)] text-secondary">
                                 <Linkedin className="w-6 h-6" />
                             </div>
@@ -46,7 +64,7 @@ const Contact = () => {
                             </div>
                         </div>
 
-                        <div className="flex items-center gap-4">
+                        <div className="flex items-center gap-4 min-w-[250px]">
                             <div className="p-4 rounded-full bg-[var(--color-card-bg)] border border-[var(--color-card-border)] text-[var(--color-text-main)]">
                                 <Github className="w-6 h-6" />
                             </div>
@@ -57,39 +75,26 @@ const Contact = () => {
                                 </a>
                             </div>
                         </div>
-                    </div>
+                    </motion.div>
 
-                    {/* Form */}
-                    <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
-                        <div>
-                            <input
-                                type="text"
-                                placeholder="Name"
-                                className="w-full px-4 py-3 bg-[var(--color-card-bg)] border border-[var(--color-card-border)] rounded-lg focus:outline-none focus:border-primary transition-colors text-[var(--color-text-main)] placeholder:text-[var(--color-text-muted)]"
-                            />
-                        </div>
-                        <div>
-                            <input
-                                type="email"
-                                placeholder="Email"
-                                className="w-full px-4 py-3 bg-[var(--color-card-bg)] border border-[var(--color-card-border)] rounded-lg focus:outline-none focus:border-primary transition-colors text-[var(--color-text-main)] placeholder:text-[var(--color-text-muted)]"
-                            />
-                        </div>
-                        <div>
-                            <textarea
-                                rows={4}
-                                placeholder="Message"
-                                className="w-full px-4 py-3 bg-[var(--color-card-bg)] border border-[var(--color-card-border)] rounded-lg focus:outline-none focus:border-primary transition-colors text-[var(--color-text-main)] placeholder:text-[var(--color-text-muted)] resize-none"
-                            />
-                        </div>
-                        <motion.button
-                            whileHover={{ scale: 1.02 }}
-                            whileTap={{ scale: 0.95 }}
-                            className="w-full py-3 bg-gradient-to-r from-primary to-secondary text-white font-semibold rounded-lg hover:shadow-[0_0_20px_rgba(249,115,22,0.4)] transition-all flex items-center justify-center gap-2"
-                        >
-                            Send Message <Send className="w-4 h-4" />
-                        </motion.button>
-                    </form>
+                    {/* Animated Form */}
+                    <motion.div
+                        initial={{ opacity: 0, scale: 0.95 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 0.8, delay: 0.4 }}
+                        viewport={{ once: true }}
+                        className="w-full bg-[var(--color-card-bg)] border border-[var(--color-card-border)] rounded-xl overflow-hidden shadow-2xl h-[800px]"
+                    >
+                        <div
+                            className="visme_d"
+                            data-title="Simple Animated Contact Form"
+                            data-url="7vgozy9w-untitled-project?fullPage=false"
+                            data-domain="forms"
+                            data-full-page="false"
+                            data-min-height="100%"
+                            data-form-id="163634"
+                        />
+                    </motion.div>
                 </div>
             </div>
         </section>

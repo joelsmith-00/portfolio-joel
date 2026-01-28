@@ -75,7 +75,7 @@ const Skills = () => {
                                 {skillGroup.category}
                             </h3>
                             <div className="grid grid-cols-2 sm:grid-cols-4 gap-6">
-                                {skillGroup.items.map((item, index) => (
+                                {skillGroup.items.map((item) => (
                                     <motion.div
                                         key={item.name}
                                         whileHover={{ scale: 1.1, y: -5 }}

@@ -1,12 +1,11 @@
 // Hero.tsx
-import { motion, useMotionValue, useTransform, animate } from 'framer-motion';
+import { motion, useMotionValue, animate } from 'framer-motion';
 import { ArrowDown, Linkedin, Github, Mail } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import heroImg from '../assets/hero-profile.jpg';
 
 const TypingText = ({ text }: { text: string }) => {
     const count = useMotionValue(0);
-    const rounded = useTransform(count, (latest) => Math.round(latest));
     const [display, setDisplay] = useState("");
 
     useEffect(() => {
@@ -74,7 +73,7 @@ const Hero = () => {
                             { icon: Github, href: "https://github.com/joelsmith-00" },
                             { icon: Linkedin, href: "https://www.linkedin.com/in/joel-smith-632b40322" },
                             { icon: Mail, href: "mailto:js96292006@gmail.com" }
-                        ].map(({ icon: Icon, href }, i) => (
+                        ].map(({ icon: Icon, href }) => (
                             <motion.a
                                 key={href}
                                 href={href}
